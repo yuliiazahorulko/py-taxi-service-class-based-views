@@ -2,16 +2,42 @@
 
 {% block content %}
   <h1><strong>Car Model:</strong> {{ car.model }}</h1>
-  <p><strong>Car Manufacturer:</strong> {{ car.manufacturer }}</p>
+  <p><strong>Car Manufacturer Name:</strong> {{ car.manufacturer.name }}</p>
+  <p><strong>Car Manufacturer Country:</strong> {{ car.manufacturer.country }}</p>
   <div class="ml3">
-    <h3>Drivers:</h3>
+
+  <p><strong>Drivers of the Car:</strong></p>
+  <p>
+
+  {% if car.drivers.all %}
+    <table>
+
+    <tr>
+      <th>ID</th>
+      <th>Username</th>
+      <th>First name</th>
+      <th>Last name</th>
+    </tr>
     {% for driver in car.drivers.all %}
-      <hr>
-      <p class="text-muted">{{ driver.id }}</p>
-      <p> {{ driver.first_name }} {{ driver.last_name }} (username = {{ driver.username }})</p>
+      <tr>
+      <th><a href="{{ car.get_absolute_url }}"> {{ driver.id }}</a></th>
+      <th>{{ driver.username }}</th>
+      <th>{{ driver.first_name }}</th>
+      <th>{{ driver.last_name }}</th>
+      </tr>
+
       {% empty %}
       No Drivers!
     {% endfor %}
+    </table>
+
+    {% else %}
+      <p>There are no Cars</p>
+
+  {% endif %}
+
+
   </div>
+
 
 {% endblock %}
