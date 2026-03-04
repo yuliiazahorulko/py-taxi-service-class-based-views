@@ -7,11 +7,9 @@
   <div class="ml3">
 
   <p><strong>Drivers of the Car:</strong></p>
-  <p>
 
   {% if car.drivers.all %}
     <table>
-
     <tr>
       <th>ID</th>
       <th>Username</th>
@@ -20,24 +18,17 @@
     </tr>
     {% for driver in car.drivers.all %}
       <tr>
-      <th><a href="{{ car.get_absolute_url }}"> {{ driver.id }}</a></th>
-      <th>{{ driver.username }}</th>
-      <th>{{ driver.first_name }}</th>
-      <th>{{ driver.last_name }}</th>
+      <td><a href="{{ driver.get_absolute_url }}"> {{ driver.id }}</a></td>
+      <td>{{ driver.username }}</td>
+      <td>{{ driver.first_name }}</td>
+      <td>{{ driver.last_name }}</td>
       </tr>
-
       {% empty %}
       No Drivers!
     {% endfor %}
     </table>
-
     {% else %}
-      <p>There are no Cars</p>
-
+      <p>There are no drivers for this car.</p>
   {% endif %}
-
-
   </div>
-
-
 {% endblock %}

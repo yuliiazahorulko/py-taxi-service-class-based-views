@@ -9,30 +9,22 @@
   <p>Is Active: {{ driver.is_active }}</p>
   <br>
   <p><strong>Cars of the Driver:</strong></p>
-  <p>
-
   {% if driver.cars.all %}
     <table>
-
     <tr>
       <th>ID</th>
       <th>Model</th>
     </tr>
     {% for car in driver.cars.all %}
       <tr>
-      <th><a href="{{ car.get_absolute_url }}"> {{ car.id }}</a></th>
-      <th>{{ car.model }}</th>
+      <td><a href="{{ car.get_absolute_url }}"> {{ car.id }}</a></td>
+      <td>{{ car.model }}</td>
       </tr>
-
       {% empty %}
-      No Drivers!
+       "This driver has no cars!"
     {% endfor %}
     </table>
-
     {% else %}
       <p>There are no Cars</p>
-
   {% endif %}
-
-  </p>
 {% endblock %}
